@@ -4,24 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class DormTest {
-	//this is a test of the Comparable interface
-	/**public static void main(String[] args){
-		DormRoom[] cats = new DormRoom[20];
-		for(int i=0;i<20;i++){
-			int size = (int) (20*Math.random()+1);
-			System.out.println(size);
-			cats[i]=new DormRoom(size,1);
-		}
-		Collections.sort(Arrays.asList(cats));
-		for(int i=0;i<20;i++){
-			System.out.println(cats[i].getOccupancy());
-		}
-		
-	}**/
 	
-	//This is a test of the comparator interface
 	
 	public static void main (String[] args){
+		//creating a bunch of dorm rooms
 		DormRoom[] cats= new DormRoom[20];
 		System.out.println("Floor -- Size");
 		for(int i=0;i<20;i++){
@@ -30,14 +16,23 @@ public class DormTest {
 			System.out.println(floorNumber+"    " +size);
 			cats[i]=new DormRoom(size,floorNumber);
 		}
+		//comparable test
+		System.out.println("sorted by occupancy using comparable");
+		Collections.sort(Arrays.asList(cats));
+		System.out.println("Floor -- Size");
+		for(int i=0;i<20;i++){
+			System.out.println(cats[i].getFloorNumber()+"    " +cats[i].getOccupancy());
+		}
+		//comparable test 1
 		Collections.sort(Arrays.asList(cats), DormRoom.compareByFloorNumber());
 		System.out.println("sorted by floor");
 		System.out.println("Floor -- Size");
 		for(int i=0;i<20;i++){
 			System.out.println(cats[i].getFloorNumber()+"    " +cats[i].getOccupancy());
 		}
+		//comparable test 2
 		Collections.sort(Arrays.asList(cats), DormRoom.compareByOccupancy());
-		System.out.println("sorted by occupancy");
+		System.out.println("sorted by occupancy using comparator");
 		System.out.println("Floor -- Size");
 		for(int i=0;i<20;i++){
 			System.out.println(cats[i].getFloorNumber()+"    " +cats[i].getOccupancy());
