@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 /**
  * A super cool DormRoom
- * Compares by Occupancy
+ * Compares by Occupancy if you're using comparable interface
  * @author Christian
  *
  */
