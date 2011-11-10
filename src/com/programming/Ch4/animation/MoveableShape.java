@@ -5,8 +5,10 @@ import java.awt.*;
 /**
    A shape that can be moved around.
    Information regarding this shape's 
-   State is also stored, such as the direction 
+   state is also stored, such as the direction 
    it is moving in, etc. etc.
+   @author Cay horstmann, with subtle yet delicious
+   touches form Christian moscardi
 */
 public interface MoveableShape
 {
@@ -35,7 +37,11 @@ public interface MoveableShape
    
    /**
     * 
-    * @return the x direction the object is moving in
+    * @return the x direction the object is/was moving in. 
+    * +1 if the object is/was moving to the right. 
+    * -1 if the object is/was moving to the left.
+    * ONLY RETURN 0 IF YOU WANT THIS METHOD TO BE KNOWN
+    * AS UNUSABLE IN YOUR SHAPE
     */
    int getXDirection();
    

@@ -24,6 +24,9 @@ public class CarShape implements MoveableShape
      
    }
 
+   /**
+    * @see MoveableShape
+    */
    public void translate(int dx, int dy)
    {
 	  if(dx<0){
@@ -32,64 +35,30 @@ public class CarShape implements MoveableShape
 	  if(dx>0){
 		  direction=+1;
 	  }
-	  if(dx==0){
-		  direction =0;
-	  }
       x += dx;
       y += dy;
    }
    
-   /**
-    * Horstmann's magic code
-    * @param g2 i don't really know
-    */
-   public void draw2(Graphics2D g2)
-   {
-      Rectangle2D.Double body
-            = new Rectangle2D.Double(x, y + width / 6, 
-                  width - 1, width / 6);
-      Ellipse2D.Double frontTire
-            = new Ellipse2D.Double(x + width / 6, y + width / 3, 
-                  width/6 , width/6 );
-      Ellipse2D.Double rearTire
-            = new Ellipse2D.Double(x + width * 2 / 3, y + width / 3,
-                  width/6 , width/6 );
-
-      // The bottom of the front windshield
-      Point2D.Double r1
-            = new Point2D.Double(x + width / 6, y + width / 6);
-      // The front of the roof
-      Point2D.Double r2
-            = new Point2D.Double(x + width / 3, y);
-      // The rear of the roof
-      Point2D.Double r3
-            = new Point2D.Double(x + width * 2 / 3, y);
-      // The bottom of the rear windshield
-      Point2D.Double r4
-            = new Point2D.Double(x + width * 5 / 6, y + width / 6);
-      Line2D.Double frontWindshield
-            = new Line2D.Double(r1, r2);
-      Line2D.Double roofTop
-            = new Line2D.Double(r2, r3);
-      Line2D.Double rearWindshield
-            = new Line2D.Double(r3, r4);
-      
-      g2.draw(body);
-      g2.draw(frontTire);
-      g2.draw(rearTire);
-      g2.draw(frontWindshield);
-      g2.draw(roofTop);
-      g2.draw(rearWindshield);
-   }
    
    /**
-    * I don't even know what's going on in kender's magic diagram
-    * thing. so i'm just gonna do it my way
-    * @param g2
+    * Draws the car as per the x and y coordinates at that
+    * moment,
+    * and the width parameter given during construction
+    * Kender's 'cheat sheet' is kind of confusing. 
+    * I think i refactored the same way
+    * @param g2 the graphics context
     */
+   //***TA NOTE*** 
+   //I didn't capitalize 'unit'
+   //because it doesn't seem to be 
+   //a constant in the traditional sense.
+   //it depends on the width of the car 
+   //which is given. 
+   //so yeah 
    public void draw(Graphics2D g2){
-	   //DRAW A PICTURE
-	   //X axis
+	   //DRAW A PICTURE FOR UNDERSTANDING
+	   
+	   //The left side of the car body
 	   int bodyLeft=x;
 	   //the left side of the left window
 	   int leftWindow = x + unit;
@@ -108,6 +77,7 @@ public class CarShape implements MoveableShape
 	   int rightWheelLeft = roofRight;
 	   
 	   //Y axis
+	   //the top of the roof
 	   int roofTop=y;
 	   //the top of the body 
 	   //== the bottom of the roof window thigny
@@ -129,7 +99,7 @@ public class CarShape implements MoveableShape
 	   Ellipse2D.Double rearTire
        	= new Ellipse2D.Double(rightWheelLeft,wheelTop,wheelDiameter,wheelDiameter);
 	   
-	   //the ugly-ass roof thing
+	   //the ugly roof thing
 	   Point2D.Double leftWindowBasePoint= new Point2D.Double(leftWindow,bodyTop);
 	   
 	   //moving left to right in the picture
@@ -158,13 +128,22 @@ public class CarShape implements MoveableShape
 	   g2.draw(roofLine);
 	   g2.draw(rightWindowLine);
    }
-   
+   /**
+    * @see MoveableShape
+    */
    public int getLeftXCoordinate(){
 	   return x;
    }
+  
+   /**
+    * @see MoveableShape
+    */
    public int getRightXCoordinate(){
-	   return x+width; //this is straightforward enough
+	   return x+width; //straightforward. no tricks here
    }
+   /**
+    * @see MoveableShape
+    */
    public int getXDirection(){
 	   return direction;
    }
